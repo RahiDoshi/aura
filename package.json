@@ -1,0 +1,30 @@
+{
+  "name": "aura-portal",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "src/shared",
+    "src/server",
+    "src/web"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w @aura/server & npm run dev -w @aura/web",
+    "build": "npm run build -w @aura/shared && npm run build -w @aura/server && npm run build -w @aura/web",
+    "typecheck": "npm run typecheck -w @aura/shared && npm run typecheck -w @aura/server && npm run typecheck -w @aura/web",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "test": "vitest run",
+    "postinstall": "cd src/server && npx --no-install prisma generate && cd ../.. && npm run build -w @aura/shared"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.21.0",
+    "@types/supertest": "^7.2.1",
+    "eslint": "^9.21.0",
+    "eslint-config-prettier": "^10.0.2",
+    "prettier": "^3.5.3",
+    "supertest": "^7.3.0",
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.26.0",
+    "vitest": "^3.0.8"
+  }
+}
